@@ -18,8 +18,8 @@ export function Header() {
     { href: "/services", label: t.nav.services },
     { href: "/clients", label: t.nav.clients },
     { href: "/team", label: t.nav.team },
-    { href: "/process", label: t.nav.process },
-    { href: "/rates", label: t.nav.rates },
+    // { href: "/process", label: t.nav.process },
+    // { href: "/rates", label: t.nav.rates },
   ]
 
   return (
