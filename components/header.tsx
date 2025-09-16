@@ -18,10 +18,10 @@ export function Header() {
     { href: "/services", label: t.nav.services },
     { href: "/clients", label: t.nav.clients },
     { href: "/team", label: t.nav.team },
+
+  ]
     // { href: "/process", label: t.nav.process },
     // { href: "/rates", label: t.nav.rates },
-  ]
-
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
