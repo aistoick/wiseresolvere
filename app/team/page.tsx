@@ -29,7 +29,7 @@ export default function TeamPage() {
     {
       name: "Rakhmanov Begzod Temirovich",
       position: t.team.auditor || "Auditor",
-      image: "/placeholder-ixyv8.png",
+      image: "/begzod.jpg",
       qualification: "IFRS (ACCA)",
       education: [
         "Oxford Brookes University (2016-2020) - Accounting (BA)",

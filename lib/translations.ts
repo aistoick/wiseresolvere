@@ -415,7 +415,7 @@ export const translations: Record<Language, Translations> = {
         "Wise Resolvere provides comprehensive audit, tax, and consulting services to help your business grow with confidence and compliance.",
       cta: "Get Free Consultation",
       trustBadge: "Trusted by 500+ businesses",
-      yearsExperience: "15+ Years Experience",
+      yearsExperience: "8+ Years Experience",
       clientsSatisfied: "500+ Satisfied Clients",
       projectsCompleted: "1000+ Projects Completed",
       badge: "Professional Audit Company",
@@ -1787,5 +1787,10 @@ export const translations: Record<Language, Translations> = {
       projects: "Loyihalar",
       experience: "Tajriba",
     },
+    
+    
   },
+
+  
+  
 }
