@@ -331,41 +331,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Partners Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-3">
-              {t.partners?.title || "Bizga ishonch bildirganlar"}
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              {t.partners?.subtitle || "Yetakchi kompaniyalar hamkorligimizdan mamnun"}
-            </p>
-          </div>
+    {/* Partners Section */}
+<section className="py-20 bg-muted/30">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl lg:text-4xl font-bold mb-3">
+        {t.partners?.title || "Bizga ishonch bildirganlar"}
+      </h2>
+      <p className="text-muted-foreground max-w-2xl mx-auto">
+        {t.partners?.subtitle || "Yetakchi kompaniyalar hamkorligimizdan mamnun"}
+      </p>
+    </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {partners.map((p) => {
-              const name = t.partners?.items?.[p.key] ?? p.key
-              return (
-                <div
-                  key={p.key}
-                  className="rounded-xl bg-white border shadow-sm hover:shadow-md transition
-                           aspect-[16/9] flex items-center justify-center p-4"
-                  title={name}
-                >
-                  <Image
-                    src={p.logo}
-                    alt={name}
-                    width={240}
-                    height={120}
-                    className="max-h-full max-w-full object-contain"
-                  />
-                </div>
-              )
-            })}
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      {partners.map((p) => {
+        const name = t.partners?.items?.[p.key] ?? p.key
+        return (
+          <div
+            key={p.key}
+            className="relative rounded-xl bg-white border shadow-sm hover:shadow-md transition 
+                       aspect-[16/9] flex items-center justify-center"
+            title={name}
+          >
+            <Image
+              src={p.logo}
+              alt={name}
+              fill
+              className="object-contain p-4"
+            />
           </div>
-        </div>
-      </section>
+        )
+      })}
+    </div>
+  </div>
+</section>
     </div>
   )
 }
