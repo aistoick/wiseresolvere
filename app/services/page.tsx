@@ -5,90 +5,54 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Shield, Calculator, TrendingUp, FileText, CheckCircle, ArrowRight, Users, Award, Target } from "lucide-react"
+import { Shield, Calculator, TrendingUp, FileText, Users, Award, Target } from "lucide-react"
+import { CheckCircle, ArrowRight } from "lucide-react"
 
 export default function ServicesPage() {
   const { t } = useLanguage()
 
+  // Updated services (Russian titles) — no prices
   const mainServices = [
     {
       icon: Shield,
-      title: t.services.audit,
-      description: t.services.auditDesc,
-      features: t.services.auditFeatures,
-      duration: "2-6 weeks",
-      startingPrice: "$2,500",
+      title: "Аудиторские услуги",
+      description: "", // optional: add text later or connect to i18n
+      features: [] as string[],
     },
     {
       icon: Calculator,
-      title: t.services.tax,
-      description: t.services.taxDesc,
-      features: t.services.taxFeatures,
-      duration: "1-3 weeks",
-      startingPrice: "$500",
+      title: "Налоговый консалтинг",
+      description: "",
+      features: [],
+    },
+    {
+      icon: FileText,
+      title: "Трансформация годовых отчётов в соответствии международными стандартами",
+      description: "",
+      features: [],
+    },
+    {
+      icon: FileText,
+      title: "Бухгалтерские услуги",
+      description: "",
+      features: [],
     },
     {
       icon: TrendingUp,
-      title: t.services.consulting,
-      description: t.services.consultingDesc,
-      features: t.services.consultingFeatures,
-      duration: "4-12 weeks",
-      startingPrice: "$3,000",
-    },
-    {
-      icon: FileText,
-      title: t.services.accounting,
-      description: t.services.accountingDesc,
-      features: t.services.accountingFeatures,
-      duration: "Ongoing",
-      startingPrice: "$800/month",
+      title: "Финансово-экономический анализ деятельности предприятий",
+      description: "",
+      features: [],
     },
   ]
 
-  const additionalServices = [
-    {
-      title: t.services.dueDiligence,
-      description: t.services.dueDiligenceDesc,
-      icon: Target,
-    },
-    {
-      title: t.services.forensicAccounting,
-      description: t.services.forensicAccountingDesc,
-      icon: Award,
-    },
-    {
-      title: t.services.ifrsImplementation,
-      description: t.services.ifrsImplementationDesc,
-      icon: FileText,
-    },
-    {
-      title: t.services.trainingWorkshops,
-      description: t.services.trainingWorkshopsDesc,
-      icon: Users,
-    },
-  ]
+  // You can keep or remove additional services section. Keeping structure empty for now.
+  const additionalServices: { title: string; description: string; icon: any }[] = []
 
   const processSteps = [
-    {
-      step: "01",
-      title: t.services.step1Title,
-      description: t.services.step1Desc,
-    },
-    {
-      step: "02",
-      title: t.services.step2Title,
-      description: t.services.step2Desc,
-    },
-    {
-      step: "03",
-      title: t.services.step3Title,
-      description: t.services.step3Desc,
-    },
-    {
-      step: "04",
-      title: t.services.step4Title,
-      description: t.services.step4Desc,
-    },
+    { step: "01", title: t.services.step1Title, description: t.services.step1Desc },
+    { step: "02", title: t.services.step2Title, description: t.services.step2Desc },
+    { step: "03", title: t.services.step3Title, description: t.services.step3Desc },
+    { step: "04", title: t.services.step4Title, description: t.services.step4Desc },
   ]
 
   return (
@@ -120,32 +84,33 @@ export default function ServicesPage() {
                       </div>
                       <div>
                         <CardTitle className="text-xl">{service.title}</CardTitle>
-                        <Badge variant="outline" className="mt-1">
-                          {service.duration}
-                        </Badge>
+                        {/* duration removed */}
                       </div>
                     </div>
-                    <div className="text-right">
-                      <div className="text-sm text-muted-foreground">{t.services.startingFrom}</div>
-                      <div className="text-lg font-bold text-primary">{service.startingPrice}</div>
-                    </div>
+                    {/* Price block removed */}
                   </div>
                 </CardHeader>
 
                 <CardContent className="space-y-6">
-                  <CardDescription className="leading-relaxed">{service.description}</CardDescription>
+                  {service.description && (
+                    <CardDescription className="leading-relaxed">
+                      {service.description}
+                    </CardDescription>
+                  )}
 
-                  <div>
-                    <h4 className="font-semibold mb-3">{t.services.whatsIncluded}</h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {service.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center gap-2">
-                          <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
-                          <span className="text-sm">{feature}</span>
-                        </div>
-                      ))}
+                  {service.features && service.features.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold mb-3">{t.services.whatsIncluded}</h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {service.features.map((feature, featureIndex) => (
+                          <div key={featureIndex} className="flex items-center gap-2">
+                            <CheckCircle className="h-4 w-4 text-secondary flex-shrink-0" />
+                            <span className="text-sm">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   <Button className="w-full" asChild>
                     <Link href="/order">
@@ -160,31 +125,33 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Additional Services */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t.services.additionalServicesTitle}</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{t.services.additionalServicesSubtitle}</p>
-          </div>
+      {/* Additional Services (optional) */}
+      {additionalServices.length > 0 && (
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t.services.additionalServicesTitle}</h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{t.services.additionalServicesSubtitle}</p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {additionalServices.map((service, index) => (
-              <Card key={index} className="text-center p-6 hover:shadow-lg transition-all duration-300">
-                <CardHeader className="pb-4">
-                  <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                    <service.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-lg">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="leading-relaxed">{service.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {additionalServices.map((service, index) => (
+                <Card key={index} className="text-center p-6 hover:shadow-lg transition-all duration-300">
+                  <CardHeader className="pb-4">
+                    <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                      <service.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <CardTitle className="text-lg">{service.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="leading-relaxed">{service.description}</CardDescription>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Process Steps */}
       <section className="py-20">
